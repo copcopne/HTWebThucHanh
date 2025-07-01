@@ -63,5 +63,26 @@ private static final int PAGE_SIZE = 6;
             }
             return query.getResultList();
         }
+        
     }
+        public Product getProductById(int id) {
+            try (Session s = HibernateUtils.getFACTORY().openSession()) {
+                return s.get(Product.class, id);
+            }
+        }
+        public void addOrUpdateProduct(Product p) {
+            try (Session s = HibernateUtils.getFACTORY().openSession()) {
+                if (p.getId() == null) {
+                    s.persist(p);
+                } else {
+                    s.merge(p);
+                }
+            }
+        }
+        public void deleteProduct(int id) {
+            try (Session s = HibernateUtils.getFACTORY().openSession()) {
+                Product p = this.getProductById(id);
+                s.remove(p);
+            }
+        }
 }
