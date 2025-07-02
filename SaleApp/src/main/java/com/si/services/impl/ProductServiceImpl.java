@@ -28,17 +28,17 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product getProductById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.prodRepo.getProductById(id);
     }
 
     @Override
     public void addOrUpdateProduct(Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.prodRepo.addOrUpdateProduct(p);
     }
 
     @Override
     public void deleteProduct(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.prodRepo.deleteProduct(id);
     }
     
     
