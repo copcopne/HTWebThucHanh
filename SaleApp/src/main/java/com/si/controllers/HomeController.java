@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,10 +26,14 @@ public class HomeController {
     @Autowired
     private ProductService prodService;
     
+    @ModelAttribute
+    public void commonResponses(Model model) {
+        model.addAttribute("categories", this.cateService.getCategories());
+    }
+    
     @RequestMapping("/")
     @Transactional
     public String index(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("categories", this.cateService.getCategories());
         model.addAttribute("products", this.prodService.getProducts(params));
         return "index";
     };
