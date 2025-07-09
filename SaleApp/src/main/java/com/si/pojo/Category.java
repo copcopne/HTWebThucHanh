@@ -17,6 +17,8 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -113,5 +115,5 @@ public class Category implements Serializable {
     public String toString() {
         return "com.si.pojo.Category[ id=" + id + " ]";
     }
-    
+
 }
