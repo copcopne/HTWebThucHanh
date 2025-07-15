@@ -4,27 +4,28 @@
  */
 package com.si.services.impl;
 
-import com.si.services.StatService;
+import com.si.repositories.StatsRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.si.services.StatsService;
 
 /**
  *
  * @author admin
  */
 @Service
-public class StatServiceImpl implements StatService {
+public class StatsServiceImpl implements StatsService {
     @Autowired
-    private StatService statService;
+    private StatsRepository statsRepo;
     @Override
     public List<Object[]> statsRevenueByProduct() {
-        return this.statService.statsRevenueByProduct();
+        return this.statsRepo.statsRevenueByProduct();
     }
 
     @Override
     public List<Object[]> statsRevenueByTime(String time, int year) {
-        return this.statService.statsRevenueByTime(time, year);
+        return this.statsRepo.statsRevenueByTime(time, year);
     }
     
 }

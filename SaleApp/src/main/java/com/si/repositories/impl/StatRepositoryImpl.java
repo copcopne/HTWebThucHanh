@@ -7,7 +7,6 @@ package com.si.repositories.impl;
 import com.si.pojo.OrderDetail;
 import com.si.pojo.Product;
 import com.si.pojo.SaleOrder;
-import com.si.repositories.StatRepository;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -19,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import com.si.repositories.StatsRepository;
 
 /**
  *
@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class StatRepositoryImpl implements StatRepository{
+public class StatRepositoryImpl implements StatsRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
@@ -36,7 +36,7 @@ public class StatRepositoryImpl implements StatRepository{
         Session s = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root<OrderDetail> r = q.from(OrderDetail.class);
+        Root r = q.from(OrderDetail.class);
         Join<OrderDetail, Product> join = r.join("productId");
 
         q.multiselect(join.get("id"), join.get("name"),
@@ -45,6 +45,7 @@ public class StatRepositoryImpl implements StatRepository{
 
         Query query = s.createQuery(q);
         return query.getResultList();
+
     }
 
     @Override

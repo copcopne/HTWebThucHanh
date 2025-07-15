@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author admin
  */
-public interface StatRepository {
+public interface StatsRepository {
     List<Object[]> statsRevenueByProduct();
     List<Object[]> statsRevenueByTime(String time, int year);
 }
