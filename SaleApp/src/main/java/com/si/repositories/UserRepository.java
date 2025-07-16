@@ -5,6 +5,8 @@
 package com.si.repositories;
 
 import com.si.pojo.User;
+import java.util.Map;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -12,4 +14,5 @@ import com.si.pojo.User;
  */
 public interface UserRepository {
     User getUserByUsername(String username);
+    User addUser(User u);
 }
