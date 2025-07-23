@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useContext, useEffect, useState } from "react";
+import { Badge, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Apis, { endpoints } from "../../configs/Apis";
+import { Link } from "react-router-dom";
+import { MyCartContext } from "../../configs/Contexts";
 
 const Header = () => {
     const [categories, setCategories] = useState([]);
+    const [cartCounter, ] = useContext(MyCartContext);
 
     const loadCates = async () => {
         let res = await Apis.get(endpoints['categories']);
@@ -22,13 +25,11 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
+                    <Link className="nav-link" to="/">Trang chủ</Link>
                     <NavDropdown title="Danh mục" id="basic-nav-dropdown">
-                        {categories.map(c => <NavDropdown.Item key={c.id} href="#action/3.1">{c.name}</NavDropdown.Item>)}
-                        
-                    
+                        {categories.map(c => <Link to={`/?cateId=${c.id}`} key={c.id}  className='dropdown-item'>{c.name}</Link>)}
                     </NavDropdown>
+                <Link className="nav-link" to="/cart">Giỏ hàng <Badge>{cartCounter}</Badge></Link>
                 </Nav>
                 </Navbar.Collapse>
             </Container>
