@@ -7,6 +7,9 @@ import { Container } from "react-bootstrap";
 import { MyCartContext } from "./configs/Contexts";
 import { useReducer } from "react";
 import MyCartReducer from "./reducers/MyCartReducer";
+import Cart from "./components/Cart";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 const App = () => {
   const [cartCounter, cartDispatch] = useReducer(MyCartReducer, 0);
@@ -17,7 +20,10 @@ const App = () => {
 
         <Container>
           <Routes>
-            <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Container>
 

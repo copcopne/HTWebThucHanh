@@ -21,7 +21,7 @@ const Header = () => {
         <>
             <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Link className="navbar-brand" to="/">eCommerce Website</Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -30,6 +30,8 @@ const Header = () => {
                         {categories.map(c => <Link to={`/?cateId=${c.id}`} key={c.id}  className='dropdown-item'>{c.name}</Link>)}
                     </NavDropdown>
                 <Link className="nav-link" to="/cart">Giỏ hàng <Badge>{cartCounter}</Badge></Link>
+                <Link to="/register" className="nav-link text-info">Đăng ký</Link>
+                <Link to="/login" className="nav-link text-info">Đăng nhập</Link>
                 </Nav>
                 </Navbar.Collapse>
             </Container>
